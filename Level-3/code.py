@@ -49,3 +49,10 @@ class TaxPayer:
 
         # assume that tax data is returned on screen after this
         return path
+    
+    def safe_path(path):
+        base_dir = os.path.dirname(os.path.abspath(__file__))
+        filepath = os.path.normpath(os.path.join(base_dir, path))
+        if base_dir != os.path.commonpath([base_dir, filepath]):
+            return None
+        return filepath
